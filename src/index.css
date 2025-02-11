@@ -1,0 +1,61 @@
+/* RESET CSS - Moderno e Otimizado */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Melhor renderização de texto */
+html {
+  font-size: 16px;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+  scroll-behavior: smooth;
+}
+
+/* Remove estilos padrões de listas */
+ul, ol {
+  list-style: none;
+}
+
+/* Remove decoração de links */
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+/* Ajusta imagens para nunca ultrapassarem seus containers */
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* Definições de botões */
+button {
+  all: unset;
+  cursor: pointer;
+}
+
+/* Ajuste padrão para inputs */
+input, textarea, button, select {
+  font: inherit;
+  border: none;
+  outline: none;
+}
+
+/* Evita overflows indesejados */
+body {
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+/* Ajusta melhor a exibição do conteúdo no flex/grid */
+body, #root {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+}
