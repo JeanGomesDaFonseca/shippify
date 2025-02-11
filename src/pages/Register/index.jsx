@@ -1,78 +1,124 @@
-import { useState } from "react";
-import { TextField, Button, Dialog, DialogTitle, DialogContent, DialogActions } from "@mui/material";
+import React, { useState } from "react";
+import { TextField, Button, Box, Typography, MenuItem } from "@mui/material";
 
-function Register({ open, handleClose }) {
+const Register = () => {
   const [formData, setFormData] = useState({
-    nomeEmpresa: "",
-    cnpj: "",
-    cidade: "",
+    companyId: "",
+    cityId: "",
+    firstName: "",
+    lastName: "",
     email: "",
-    telefone: "",
+    phone: "",
+    avatarUrl: "",
+    status: "active",
   });
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log("Dados enviados:", formData);
-    handleClose(); // Fecha o modal após envio
+
+    try {
+      const response = await fetch("http://localhost:5001/api/drivers/", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(formData),
+      });
+
+      const data = await response.json();
+      if (response.ok) {
+        alert("Motorista cadastrado com sucesso!");
+      } else {
+        alert("Erro ao cadastrar motorista: " + data.message);
+      }
+    } catch (error) {
+      alert("Erro ao conectar ao servidor");
+    }
   };
 
   return (
-    <Dialog open={open} onClose={handleClose} fullWidth>
-      <DialogTitle>Cadastre sua Empresa</DialogTitle>
-      <DialogContent>
-        <form onSubmit={handleSubmit}>
-          <TextField 
-            fullWidth 
-            label="Nome da Empresa" 
-            name="nomeEmpresa"
-            value={formData.nomeEmpresa}
-            onChange={handleChange}
-            margin="dense"
-          />
-          <TextField 
-            fullWidth 
-            label="CNPJ" 
-            name="cnpj"
-            value={formData.cnpj}
-            onChange={handleChange}
-            margin="dense"
-          />
-          <TextField 
-            fullWidth 
-            label="Cidade" 
-            name="cidade"
-            value={formData.cidade}
-            onChange={handleChange}
-            margin="dense"
-          />
-          <TextField 
-            fullWidth 
-            label="E-mail" 
-            name="email"
-            value={formData.email}
-            onChange={handleChange}
-            margin="dense"
-          />
-          <TextField 
-            fullWidth 
-            label="Telefone" 
-            name="telefone"
-            value={formData.telefone}
-            onChange={handleChange}
-            margin="dense"
-          />
-          <DialogActions>
-            <Button onClick={handleClose} color="secondary">Cancelar</Button>
-            <Button type="submit" variant="contained" color="primary">Enviar</Button>
-          </DialogActions>
-        </form>
-      </DialogContent>
-    </Dialog>
+    <Box sx={{ maxWidth: 500, mx: "auto", mt: 5, p: 3, boxShadow: 3, borderRadius: 2 }}>
+      <Typography variant="h5" gutterBottom>
+        Cadastro de Motorista
+      </Typography>
+      <form onSubmit={handleSubmit}>
+        <TextField
+          label="ID da Empresa"
+          name="companyId"
+          value={formData.companyId}
+          onChange={handleChange}
+          fullWidth
+          margin="normal"
+          required
+        />
+        <TextField
+          label="ID da Cidade"
+          name="cityId"
+          value={formData.cityId}
+          onChange={handleChange}
+          fullWidth
+          margin="normal"
+          required
+        />
+        <TextField
+          label="Nome"
+          name="firstName"
+          value={formData.firstName}
+          onChange={handleChange}
+          fullWidth
+          margin="normal"
+          required
+        />
+        <TextField
+          label="Sobrenome"
+          name="lastName"
+          value={formData.lastName}
+          onChange={handleChange}
+          fullWidth
+          margin="normal"
+          required
+        />
+        <TextField
+          label="E-mail"
+          type="email"
+          name="email"
+          value={formData.email}
+          onChange={handleChange}
+          fullWidth
+          margin="normal"
+          required
+        />
+        <TextField
+          label="Telefone"
+          name="phone"
+          value={formData.phone}
+          onChange={handleChange}
+          fullWidth
+          margin="normal"
+          required
+        />
+        <TextField
+          label="Avatar URL"
+          name="avatarUrl"
+          value={formData.avatarUrl}
+          onChange={handleChange}
+          fullWidth
+          margin="normal"
+        />
+        <TextField select label="Status" name="status" value={formData.status} onChange={handleChange} fullWidth margin="normal">
+          <MenuItem value="active">Ativo</MenuItem>
+          <MenuItem value="inactive">Inativo</MenuItem>
+        </TextField>
+        <Button type="submit" variant="contained" color="primary" fullWidth sx={{ mt: 2 }}>
+          Cadastrar
+        </Button>
+      </form>
+    </Box>
   );
-}
+};
 
 export default Register;
