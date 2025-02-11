@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { TextField, Button, Box, Typography, MenuItem } from "@mui/material";
+import axios from "axios";
 
 const Register = () => {
   const [formData, setFormData] = useState({
@@ -21,19 +22,16 @@ const Register = () => {
     e.preventDefault();
 
     try {
-      const response = await fetch("http://localhost:5001/api/drivers/", {
-        method: "POST",
+      const response = await axios.post("http://localhost:5001/api/drivers/", formData, {
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify(formData),
       });
 
-      const data = await response.json();
-      if (response.ok) {
+      if (response.status === 200) {
         alert("Motorista cadastrado com sucesso!");
       } else {
-        alert("Erro ao cadastrar motorista: " + data.message);
+        alert("Erro ao cadastrar motorista: " + response.data.message);
       }
     } catch (error) {
       alert("Erro ao conectar ao servidor");
