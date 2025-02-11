@@ -6,12 +6,13 @@ export const HeaderContainer = styled.div`
   justify-content: space-between;
   align-items: center;
   padding: 20px 200px;
-  background-color: #e7e4e4;
+  background-color: #fff; 
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); 
 `;
 
 export const LogoContainer = styled(Link)``;
 
-export const NavList = styled.ul`
+export const NavList = styled.nav`
   display: flex;
   list-style: none;
   gap: 32px;

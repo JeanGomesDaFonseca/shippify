@@ -1,34 +1,19 @@
 import React from "react";
-import * as S from "./styles";
 import LogoShippify from "../../assets/img/logo-shippify.svg";
-import { useOutletContext } from "react-router-dom";
+import * as S from "./styles";
 
-const Header = () => {
-  const outletContext = useOutletContext() || {}; // Evita erro se for null
-  const { setSearchTerm } = outletContext;
-
+const Header = ({ searchTerm, setSearchTerm }) => {
   return (
     <S.HeaderContainer>
       <S.LogoContainer to="/">
         <img src={LogoShippify} alt="logo da shippify" />
       </S.LogoContainer>
 
-      <input
-        type="text"
-        placeholder="Pesquisar..."
-        onChange={(e) => setSearchTerm && setSearchTerm(e.target.value)}
-        style={{
-          padding: "8px",
-          fontSize: "16px",
-          borderRadius: "5px",
-          border: "1px solid gray",
-          marginLeft: "20px",
-        }}
-      />
+      <S.SearchInput type="text" placeholder="Pesquisar..." value={searchTerm} onChange={(e) => setSearchTerm(e.target.value)} />
 
       <S.NavList>
-        <S.NavItem to="/cadastro-motorista">Cadastrar Motorista</S.NavItem>
-        <S.NavItem to="/cadastro-veiculo">Cadastrar Veículo</S.NavItem>
+        <S.NavItem href="/cadastro-motorista">Cadastrar Motorista</S.NavItem>
+        <S.NavItem href="/cadastro-veiculo">Cadastrar Veículo</S.NavItem>
       </S.NavList>
     </S.HeaderContainer>
   );
