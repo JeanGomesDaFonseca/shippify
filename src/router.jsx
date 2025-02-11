@@ -1,6 +1,6 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Home from "./pages/Home";
-import Register from "./pages/Register";
+import RegisterMotorista from "./pages/RegisterMotorista";
 import Layout from "./components/Layout";
 
 function WebRouter() {
@@ -9,7 +9,9 @@ function WebRouter() {
       <Routes>
         <Route path="/" element={<Layout />}>
           <Route path="/" element={<Home />} />
-          <Route path="/cadastro" element={<Register />} />
+          <Route path="/cadastro-motorista" element={<RegisterMotorista />} />
+          <Route path="/cadastro-veiculo" element={<RegisterVeiculo />} />
+
         </Route>
       </Routes>
     </Router>

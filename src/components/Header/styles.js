@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import styled from "styled-components";
 
 export const HeaderContainer = styled.div`
@@ -8,7 +9,7 @@ export const HeaderContainer = styled.div`
   background-color: #e7e4e4;
 `;
 
-export const LogoContainer = styled.div``;
+export const LogoContainer = styled(Link)``;
 
 export const NavList = styled.ul`
   display: flex;
@@ -16,7 +17,7 @@ export const NavList = styled.ul`
   gap: 32px;
 `;
 
-export const NavItem = styled.li`
+export const NavItem = styled(Link)`
   font-size: 16px;
   font-weight: 500;
   color: #000;
