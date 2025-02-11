@@ -1,12 +1,14 @@
-import React from "react";
+import React, { useState } from "react";
 import { Outlet } from "react-router-dom";
 import Header from "../Header";
 
 const Layout = () => {
+  const [searchTerm, setSearchTerm] = useState("");
+
   return (
     <div>
-      <Header />
-      <Outlet />
+      <Header setSearchTerm={setSearchTerm} />
+      <Outlet context={{ searchTerm, setSearchTerm }} />
     </div>
   );
 };
