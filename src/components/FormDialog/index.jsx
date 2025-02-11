@@ -15,7 +15,7 @@ function FormDialog({ open, onClose }) {
 
   const handleSubmit = () => {
     console.log("Dados enviados:", formData);
-    onClose(); // Fecha o pop-up
+    onClose();
   };
 
   return (

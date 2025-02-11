@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Button } from "@mui/material";
-import FormDialog from "../components/FormDialog"; 
+import FormDialog from "../../components/FormDialog";
 
 function Home() {
   const [open, setOpen] = useState(false);
