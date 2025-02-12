@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useTable, useGlobalFilter } from "react-table";
 import axios from "axios";
 import { useOutletContext } from "react-router-dom";
+import styles from "./styles";
 
 const Home = () => {
   const { searchTerm } = useOutletContext() || { searchTerm: "" }; 
@@ -40,20 +41,16 @@ const Home = () => {
   }, [searchTerm, setGlobalFilter]);
 
   return (
-    <div style={{ textAlign: "center", marginTop: "20px" }}>
-      <h1>Lista de Motoristas, Veículos e Empresas</h1>
-      <table
-        {...getTableProps()}
-        style={{ width: "80%", margin: "auto", borderCollapse: "collapse" }}
-      >
+    <div style={styles.container}>
+      <h1 style={{ fontSize: "24px", fontWeight: "bold", marginBottom: "20px" }}>
+        Lista de Motoristas, Veículos e Empresas
+      </h1>
+      <table {...getTableProps()} style={styles.table}>
         <thead>
           {headerGroups.map((headerGroup) => (
             <tr {...headerGroup.getHeaderGroupProps()} key={headerGroup.id}>
               {headerGroup.headers.map((column) => (
-                <th key={column.id}
-                  {...column.getHeaderProps()}
-                  style={{ borderBottom: "2px solid black", padding: "10px" }}
-                >
+                <th key={column.id} {...column.getHeaderProps()} style={styles.th}>
                   {column.render("Header")}
                 </th>
               ))}
@@ -64,9 +61,20 @@ const Home = () => {
           {rows.map((row) => {
             prepareRow(row);
             return (
-              <tr{...row.getRowProps()} key={row.id} style={{ borderBottom: "1px solid gray" }}>
+              <tr
+                {...row.getRowProps()}
+                key={row.id}
+                style={{
+                  ...styles.trHover,
+                  background: row.index % 2 === 0 ? "#fafafa" : "white",
+                }}
+                onMouseEnter={(e) => (e.currentTarget.style.background = "#f0f0f0")}
+                onMouseLeave={(e) =>
+                  (e.currentTarget.style.background = row.index % 2 === 0 ? "#fafafa" : "white")
+                }
+              >
                 {row.cells.map((cell) => (
-                  <td key={cell.id} {...cell.getCellProps()} style={{ padding: "10px" }}>
+                  <td key={cell.column.id} {...cell.getCellProps()} style={styles.td}>
                     {cell.render("Cell")}
                   </td>
                 ))}
@@ -77,6 +85,7 @@ const Home = () => {
       </table>
     </div>
   );
+  
 };
 
 export default Home;
