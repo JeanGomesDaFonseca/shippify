@@ -12,7 +12,6 @@ function WebRouter() {
           <Route path="/" element={<Home />} />
           <Route path="/cadastro-motorista" element={<RegisterMotorista />} />
           <Route path="/cadastro-veiculo" element={<RegisterVeiculo />} />
-
         </Route>
       </Routes>
     </Router>

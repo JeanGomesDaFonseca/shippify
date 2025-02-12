@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { TextField, Button, Container, Typography } from "@mui/material";
+import { TextField, Button, Container, Typography, Box } from "@mui/material";
 
 const RegisterVeiculo = () => {
   const [formData, setFormData] = useState({
@@ -47,64 +47,52 @@ const RegisterVeiculo = () => {
   };
 
   return (
-    <Container maxWidth="sm">
-      <Typography variant="h4" gutterBottom>
-        Cadastro de Veículo
-      </Typography>
-      <form onSubmit={handleSubmit}>
-        <TextField
-          fullWidth
-          label="ID da Empresa"
-          name="companyId"
-          value={formData.companyId}
-          onChange={handleChange}
-          margin="normal"
-        />
-        <TextField
-          fullWidth
-          label="ID do Motorista"
-          name="driverId"
-          value={formData.driverId}
-          onChange={handleChange}
-          margin="normal"
-        />
-        <TextField
-          fullWidth
-          label="Modelo do Veículo"
-          name="model"
-          value={formData.model}
-          onChange={handleChange}
-          margin="normal"
-        />
-        <TextField
-          fullWidth
-          label="Placa"
-          name="plate"
-          value={formData.plate}
-          onChange={handleChange}
-          margin="normal"
-        />
-        <TextField
-          fullWidth
-          label="Tipo"
-          name="type"
-          value={formData.type}
-          onChange={handleChange}
-          margin="normal"
-        />
-        <TextField
-          fullWidth
-          label="Capacidade"
-          name="capacity"
-          value={formData.capacity}
-          onChange={handleChange}
-          margin="normal"
-        />
-        <Button type="submit" variant="contained" color="primary" fullWidth>
-          Cadastrar Veículo
-        </Button>
-      </form>
-    </Container>
+    <Box sx={{ maxWidth: 500, mx: "auto", mt: 5, p: 3, boxShadow: 3, borderRadius: 2 }}>
+      <Container maxWidth="sm">
+        <Typography variant="h5" gutterBottom>
+          Cadastro de Veiculo
+        </Typography>
+        <form onSubmit={handleSubmit}>
+          <TextField
+            fullWidth
+            label="ID da Empresa"
+            name="companyId"
+            value={formData.companyId}
+            onChange={handleChange}
+            margin="normal"
+          />
+          <TextField
+            fullWidth
+            label="ID do Motorista"
+            name="driverId"
+            value={formData.driverId}
+            onChange={handleChange}
+            margin="normal"
+          />
+          <TextField
+            fullWidth
+            label="Modelo do Veículo"
+            name="model"
+            value={formData.model}
+            onChange={handleChange}
+            margin="normal"
+          />
+          <TextField fullWidth label="Placa" name="plate" value={formData.plate} onChange={handleChange} margin="normal" />
+          <TextField fullWidth label="Tipo" name="type" value={formData.type} onChange={handleChange} margin="normal" />
+          <TextField
+            fullWidth
+            label="Capacidade"
+            name="capacity"
+            value={formData.capacity}
+            onChange={handleChange}
+            margin="normal"
+          />
+          <Button type="submit" variant="contained" color="primary" fullWidth>
+            Cadastrar
+          </Button>
+        </form>
+      </Container>
+    </Box>
   );
 };
 

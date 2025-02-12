@@ -12,8 +12,8 @@ const Header = ({ searchTerm, setSearchTerm }) => {
       <S.SearchInput type="text" placeholder="Pesquisar..." value={searchTerm} onChange={(e) => setSearchTerm(e.target.value)} />
 
       <S.NavList>
-        <S.NavItem href="/cadastro-motorista">Cadastrar Motorista</S.NavItem>
-        <S.NavItem href="/cadastro-veiculo">Cadastrar Veículo</S.NavItem>
+        <S.NavItem to="/cadastro-motorista">Cadastrar Motorista</S.NavItem>
+        <S.NavItem to="/cadastro-veiculo">Cadastrar Veículo</S.NavItem>
       </S.NavList>
     </S.HeaderContainer>
   );
