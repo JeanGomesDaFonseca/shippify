@@ -1,8 +1,28 @@
 import React, { useEffect, useState } from "react";
-import { useTable, useGlobalFilter } from "react-table";
+import { useTable, useGlobalFilter, useFilters } from "react-table";
 import axios from "axios";
 import { useOutletContext } from "react-router-dom";
 import styles from "./styles";
+
+const DefaultColumnFilter = ({
+  column: { filterValue, preFilteredRows, setFilter },
+}) => {
+  return (
+    <input
+      value={filterValue || ""}
+      onChange={(e) => {
+        setFilter(e.target.value || undefined); 
+      }}
+      placeholder={`Buscar...`}
+      style={{
+        width: "100%",
+        padding: "5px",
+        borderRadius: "4px",
+        border: "1px solid #ddd",
+      }}
+    />
+  );
+};
 
 const Home = () => {
   const { searchTerm } = useOutletContext() || { searchTerm: "" }; 
@@ -17,15 +37,21 @@ const Home = () => {
 
   const columns = React.useMemo(
     () => [
-      { Header: "Nome do Motorista", accessor: "driver_first_name" },
-      { Header: "Sobrenome do Motorista", accessor: "driver_last_name" },
-      { Header: "Modelo do Veículo", accessor: "vehicle_model" },
-      { Header: "Placa", accessor: "vehicle_plate" },
-      { Header: "Empresa", accessor: "company_name" }
+      { Header: "Nome do Motorista", accessor: "driver_first_name", Filter: DefaultColumnFilter },
+      { Header: "Sobrenome do Motorista", accessor: "driver_last_name", Filter: DefaultColumnFilter },
+      { Header: "Modelo do Veículo", accessor: "vehicle_model", Filter: DefaultColumnFilter },
+      { Header: "Placa", accessor: "vehicle_plate", Filter: DefaultColumnFilter },
+      { Header: "Empresa", accessor: "company_name", Filter: DefaultColumnFilter }
     ],
     []
   );
-  
+
+  const defaultColumn = React.useMemo(
+    () => ({
+      Filter: DefaultColumnFilter,
+    }),
+    []
+  );
 
   const {
     getTableProps,
@@ -34,7 +60,11 @@ const Home = () => {
     rows,
     prepareRow,
     setGlobalFilter,
-  } = useTable({ columns, data }, useGlobalFilter);
+  } = useTable(
+    { columns, data, defaultColumn },
+    useFilters,
+    useGlobalFilter
+  );
 
   useEffect(() => {
     setGlobalFilter(searchTerm);
@@ -52,6 +82,7 @@ const Home = () => {
               {headerGroup.headers.map((column) => (
                 <th key={column.id} {...column.getHeaderProps()} style={styles.th}>
                   {column.render("Header")}
+                  <div>{column.canFilter ? column.render("Filter") : null}</div>
                 </th>
               ))}
             </tr>
@@ -85,7 +116,6 @@ const Home = () => {
       </table>
     </div>
   );
-  
 };
 
 export default Home;
