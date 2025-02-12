@@ -8,14 +8,40 @@ export const HeaderContainer = styled.div`
   padding: 20px 200px;
   background-color: #fff; 
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); 
+
+  @media (max-width: 1200px) {
+    padding: 20px 100px;
+  }
+
+  @media (max-width: 768px) {
+    padding: 20px 50px;
+  }
+
+  @media (max-width: 480px) {
+    padding: 20px;
+    align-items: flex-start;
+  }
 `;
 
-export const LogoContainer = styled(Link)``;
+export const LogoContainer = styled(Link)`
+  @media (max-width: 480px) {
+    margin-bottom: 10px;
+  }
+`;
 
 export const NavList = styled.nav`
   display: flex;
   list-style: none;
   gap: 32px;
+
+  @media (max-width: 768px) {
+    gap: 16px;
+  }
+
+  @media (max-width: 480px) {
+    flex-direction: column;
+    gap: 10px;
+  }
 `;
 
 export const NavItem = styled(Link)`
