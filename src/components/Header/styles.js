@@ -6,8 +6,8 @@ export const HeaderContainer = styled.div`
   justify-content: space-between;
   align-items: center;
   padding: 20px 200px;
-  background-color: #fff; 
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); 
+  background-color: #fff;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 
   @media (max-width: 1200px) {
     padding: 20px 100px;
@@ -47,13 +47,19 @@ export const NavList = styled.nav`
 export const NavItem = styled(Link)`
   font-size: 16px;
   font-weight: 500;
-  color: #000;
+  color: #ffffff;
   cursor: pointer;
   transition: color 0.3s;
   font-family: "Roboto", sans-serif;
   &:hover {
     color: #ef404a;
+    background-color: #fff;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.4);
   }
+
+  background-color: #ef404a;
+  padding: 6px 12px;
+  border-radius: 8px;
 `;
 
 export const SearchInput = styled.input`

@@ -15,7 +15,11 @@ export const TopSection = styled.div`
   flex-wrap: wrap;
   padding-bottom: 10px;
   border-bottom: 1px solid #ddd;
-  padding: 20px 200px
+  padding: 20px 200px;
+
+  @media (max-width: 768px) {
+    padding: 20px 30px;
+  }
 `;
 
 export const Column = styled.div`
