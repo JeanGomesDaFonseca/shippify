@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { TextField, Button, Container, Typography, Box } from "@mui/material";
+import Swal from "sweetalert2";
 
 const RegisterVeiculo = () => {
   const [formData, setFormData] = useState({
@@ -29,7 +30,7 @@ const RegisterVeiculo = () => {
 
       const data = await response.json();
       if (response.ok) {
-        alert("Veículo cadastrado com sucesso!");
+        Swal.fire("Sucesso", "Veículo cadastrado com sucesso!", "success");
         setFormData({
           companyId: "",
           driverId: "",
@@ -39,10 +40,10 @@ const RegisterVeiculo = () => {
           capacity: "",
         });
       } else {
-        alert(`Erro: ${data.message}`);
+        Swal.fire("Erro", `Erro: ${data.message}`, "error");
       }
     } catch (error) {
-      alert("Erro ao conectar com o servidor.");
+      Swal.fire("Erro", "Erro ao conectar com o servidor.", "error");
     }
   };
 

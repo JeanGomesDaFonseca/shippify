@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { TextField, Button, Box, Typography, MenuItem, Container } from "@mui/material";
 import axios from "axios";
+import Swal from "sweetalert2";
 
 const Register = () => {
   const [formData, setFormData] = useState({
@@ -29,12 +30,12 @@ const Register = () => {
       });
 
       if (response.status === 200) {
-        alert("Motorista cadastrado com sucesso!");
+        Swal.fire("Sucesso", "Motorista cadastrado com sucesso!", "success");
       } else {
-        alert("Erro ao cadastrar motorista: " + response.data.message);
+        Swal.fire("Erro", "Erro ao cadastrar motorista: " + response.data.message, "error");
       }
     } catch (error) {
-      alert("Erro ao conectar ao servidor");
+      Swal.fire("Erro", "Erro ao conectar ao servidor", "error");
     }
   };
 
