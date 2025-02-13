@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { TextField, Button, Box, Typography, MenuItem, Container } from "@mui/material";
 import Swal from "sweetalert2";
+import InputMask from "react-input-mask";
 
 const Register = () => {
   const [formData, setFormData] = useState({
@@ -20,6 +21,13 @@ const Register = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+
+    // Validação do telefone
+    const phoneRegex = /^\(\d{2}\) \d{5}-\d{4}$/;
+    if (!phoneRegex.test(formData.phone)) {
+      Swal.fire("Erro", "Telefone inválido. Use o formato (xx) xxxxx-xxxx.", "error");
+      return;
+    }
 
     try {
       const response = await fetch("http://localhost:5001/api/drivers/", {
@@ -104,15 +112,22 @@ const Register = () => {
             margin="normal"
             required
           />
-          <TextField
-            label="Telefone"
-            name="phone"
+          <InputMask
+            mask="(99) 99999-9999"
             value={formData.phone}
             onChange={handleChange}
-            fullWidth
-            margin="normal"
-            required
-          />
+          >
+            {() => (
+              <TextField
+                label="Telefone"
+                name="phone"
+                fullWidth
+                margin="normal"
+                required
+                placeholder="(xx) xxxxx-xxxx"
+              />
+            )}
+          </InputMask>
           <TextField
             label="Avatar URL"
             name="avatarUrl"
