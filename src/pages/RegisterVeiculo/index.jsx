@@ -28,7 +28,6 @@ const RegisterVeiculo = () => {
         body: JSON.stringify(formData),
       });
 
-      const data = await response.json();
       if (response.ok) {
         Swal.fire("Sucesso", "Veículo cadastrado com sucesso!", "success");
         setFormData({
@@ -40,10 +39,11 @@ const RegisterVeiculo = () => {
           capacity: "",
         });
       } else {
-        Swal.fire("Erro", `Erro: ${data.message}`, "error");
+        const data = await response.json();
+        console.error("Erro ao cadastrar veículo:", data.message);
       }
     } catch (error) {
-      Swal.fire("Erro", "Erro ao conectar com o servidor.", "error");
+      console.error("Erro ao conectar com o servidor.", error);
     }
   };
 

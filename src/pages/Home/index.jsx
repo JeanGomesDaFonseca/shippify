@@ -15,7 +15,7 @@ const DefaultColumnFilter = ({
       }}
       placeholder={`Buscar...`}
       style={{
-        width: "80%",
+        width: "100%",
         padding: "5px",
         borderRadius: "4px",
         border: "1px solid #ddd",
