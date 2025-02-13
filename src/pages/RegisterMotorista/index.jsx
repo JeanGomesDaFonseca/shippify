@@ -74,6 +74,7 @@ const Register = () => {
             fullWidth
             margin="normal"
             required
+            placeholder="ID da Empresa"
           />
           <TextField
             label="ID da Cidade"
@@ -83,6 +84,7 @@ const Register = () => {
             fullWidth
             margin="normal"
             required
+            placeholder="ID da Cidade"
           />
           <TextField
             label="Nome"
@@ -92,6 +94,7 @@ const Register = () => {
             fullWidth
             margin="normal"
             required
+            placeholder="Nome"
           />
           <TextField
             label="Sobrenome"
@@ -101,6 +104,7 @@ const Register = () => {
             fullWidth
             margin="normal"
             required
+            placeholder="Sobrenome"
           />
           <TextField
             label="E-mail"
@@ -111,6 +115,7 @@ const Register = () => {
             fullWidth
             margin="normal"
             required
+            placeholder="E-mail"
           />
           <InputMask
             mask="(99) 99999-9999"
@@ -124,7 +129,7 @@ const Register = () => {
                 fullWidth
                 margin="normal"
                 required
-                placeholder="(xx) xxxxx-xxxx"
+                placeholder="Telefone"
               />
             )}
           </InputMask>
@@ -135,6 +140,7 @@ const Register = () => {
             onChange={handleChange}
             fullWidth
             margin="normal"
+            placeholder="Avatar URL"
           />
           <TextField
             select
@@ -144,6 +150,7 @@ const Register = () => {
             onChange={handleChange}
             fullWidth
             margin="normal"
+            placeholder="Status"
           >
             <MenuItem value="active">Ativo</MenuItem>
             <MenuItem value="inactive">Inativo</MenuItem>
