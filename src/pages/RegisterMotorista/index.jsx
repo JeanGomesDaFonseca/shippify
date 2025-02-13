@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import { TextField, Button, Box, Typography, MenuItem, Container } from "@mui/material";
-import axios from "axios";
 import Swal from "sweetalert2";
 
 const Register = () => {
@@ -23,19 +22,32 @@ const Register = () => {
     e.preventDefault();
 
     try {
-      const response = await axios.post("http://localhost:5001/api/drivers/", formData, {
+      const response = await fetch("http://localhost:5001/api/drivers/", {
+        method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
+        body: JSON.stringify(formData),
       });
 
-      if (response.status === 200) {
+      const data = await response.json();
+      if (response.ok) {
         Swal.fire("Sucesso", "Motorista cadastrado com sucesso!", "success");
+        setFormData({
+          companyId: "",
+          cityId: "",
+          firstName: "",
+          lastName: "",
+          email: "",
+          phone: "",
+          avatarUrl: "",
+          status: "active",
+        });
       } else {
-        Swal.fire("Erro", "Erro ao cadastrar motorista: " + response.data.message, "error");
+        console.error("Erro ao cadastrar motorista:", data.message);
       }
     } catch (error) {
-      Swal.fire("Erro", "Erro ao conectar ao servidor", "error");
+      console.error("Erro ao conectar ao servidor", error);
     }
   };
 
