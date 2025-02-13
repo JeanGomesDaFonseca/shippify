@@ -20,16 +20,16 @@ const Footer = () => {
         </S.Column>
 
         <S.SocialMedia>
-          <S.SocialIcon href="https://www.facebook.com/shippify" target="_blank">
+          <S.SocialIcon href="https://www.facebook.com/shippify" target="_blank" aria-label="Facebook">
             <Facebook fontSize="small" />
           </S.SocialIcon>
-          <S.SocialIcon href="https://br.linkedin.com/company/shippify" target="_blank">
+          <S.SocialIcon href="https://br.linkedin.com/company/shippify" target="_blank" aria-label="LinkedIn">
             <LinkedIn fontSize="small" />
           </S.SocialIcon>
-          <S.SocialIcon href="https://x.com/Shippify" target="_blank">
+          <S.SocialIcon href="https://x.com/Shippify" target="_blank" aria-label="Twitter">
             <Twitter fontSize="small" />
           </S.SocialIcon>
-          <S.SocialIcon href="https://www.instagram.com/aloshipper/" target="_blank">
+          <S.SocialIcon href="https://www.instagram.com/aloshipper/" target="_blank" aria-label="Instagram">
             <Instagram fontSize="small" />
           </S.SocialIcon>
         </S.SocialMedia>
